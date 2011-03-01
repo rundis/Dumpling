@@ -1,0 +1,6 @@
+apply plugin: 'war'
+apply plugin: 'jetty'
+
+dependencies {
+    compile 'org.apache.tapestry:tapestry-core:5.2.4', project(':dumpling-core')
+}

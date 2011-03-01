@@ -1,0 +1,1 @@
+include ':dumpling-core', 'dumpling-util', 'dumpling-webapp'

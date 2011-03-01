@@ -1,0 +1,21 @@
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.dumpling</groupId>
+    <artifactId>dumpling-core</artifactId>
+    <version>1.0</version>
+    <packaging>jar</packaging>
+    <name>Dumplingapp Core</name>
+    <parent>
+        <artifactId>dumpling</artifactId>
+        <groupId>com.dumpling</groupId>
+        <version>1.0</version>
+    </parent>
+    <dependencies>
+        <dependency>
+            <groupId>com.dumpling</groupId>
+            <artifactId>dumpling-util</artifactId>
+            <version>1.0</version>
+        </dependency>
+    </dependencies>
+</project>

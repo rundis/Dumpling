@@ -1,0 +1,18 @@
+apply plugin: 'base'
+
+
+allprojects {
+  apply plugin: 'idea'
+}
+
+subprojects {
+  apply plugin: 'java'
+  
+  repositories {
+	mavenCentral()
+  }
+
+  dependencies {
+    testCompile 'junit:junit:4.7'
+  }
+}
