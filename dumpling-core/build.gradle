@@ -1,3 +1,77 @@
+configurations {
+    integrationTestCompile {
+        extendsFrom testCompile
+    }
+    integrationTestRuntime {
+        extendsFrom integrationTestCompile, testRuntime
+    }
+}
+
+
+
 dependencies {
     compile project(':dumpling-util')
+    // integrationTestCompile ... any dependencies needed for integration tests..
+}
+
+
+sourceSets {
+    integrationTest {
+        java.srcDir file('src/integration-test/java')
+        resources.srcDir file('src/integration-test/resources')
+        compileClasspath = sourceSets.main.classes + sourceSets.test.classes + configurations.integrationTestCompile
+        runtimeClasspath = classes + compileClasspath + configurations.integrationTestRuntime
+    }
+}
+
+task integrationTest(type: Test, dependsOn: jar) {
+    testClassesDir = sourceSets.integrationTest.classesDir
+    classpath = sourceSets.integrationTest.runtimeClasspath
+    systemProperties['jar.path'] = jar.archivePath
+}
+
+def doIntegrationTest = hasProperty('intTest') ? intTest : false
+if (doIntegrationTest) {
+    build.dependsOn integrationTest
+}
+
+
+
+
+test {
+    //maxParallelForks = 2
+}
+
+task taskA {
+    def outputFile = new File("$buildDir/jalla.txt")
+
+    outputs.files outputFile
+
+    doLast {
+        if (!buildDir.exists()) {
+            buildDir.mkdirs()
+        }
+        if (outputFile.exists()) {
+            outputFile.delete()
+        }
+        outputFile << "Hello useless file:" << System.currentTimeMillis()
+    }
+}
+
+task taskB {
+    dependsOn taskA
+
+    def inputFile = new File("$buildDir/jalla.txt")
+    def outputFile = new File("$buildDir/jalla_processed.txt")
+    inputs.files inputFile
+    outputs.files outputFile
+
+    doLast {
+        println inputFile.toURL().text
+
+        if (outputFile.exists()) {
+            outputFile.delete()
+        }
+        outputFile << "Hello even more useless file"
+    }
 }

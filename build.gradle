@@ -2,17 +2,32 @@ apply plugin: 'base'
 
 
 allprojects {
-  apply plugin: 'idea'
+    apply plugin: 'idea'
+    version = "1.0"
 }
 
 subprojects {
-  apply plugin: 'java'
-  
-  repositories {
-	mavenCentral()
-  }
+    apply plugin: 'groovy'
 
-  dependencies {
-    testCompile 'junit:junit:4.7'
-  }
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        testCompile 'junit:junit:4.7'
+    }
+    sourceCompatibility = 1.6
+    targetCompatability = 1.6
+
+    test {
+        testReport = false
+    }
+
+    task myInfo {
+        doLast {
+            println "I'm project $project.name $project.version"
+        }
+    }
 }
+
