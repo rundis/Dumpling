@@ -1,9 +1,11 @@
 *.iml
 *.ipr
 *.iws
+*.logs
 .gradle
 .classpath
 .project
+.settings
 bin
 build
 target
