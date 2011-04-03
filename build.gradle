@@ -42,7 +42,7 @@ subprojects {
 
     task myInfo {
         doLast {
-            println "I'm project $project.name $project.version"
+            println "Im project $project.name $project.version"
         }
     }
 }
