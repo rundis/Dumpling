@@ -29,6 +29,7 @@ subprojects {
     targetCompatability = 1.6
 
     test {
+        maxParallelForks = 2
         testReport = true
 
         afterTest { descriptor, result ->
