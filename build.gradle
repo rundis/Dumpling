@@ -29,7 +29,7 @@ subprojects {
     targetCompatability = 1.6
 
     test {
-        testReport = false
+        testReport = true
 
         afterTest { descriptor, result ->
             if (result.resultType.equals(TestResult.ResultType.FAILURE)) {
