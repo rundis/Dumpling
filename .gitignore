@@ -1,7 +1,7 @@
 *.iml
 *.ipr
 *.iws
-*.logs
+*.log
 .gradle
 .classpath
 .project
