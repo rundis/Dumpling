@@ -15,21 +15,29 @@ ideaProject {
 }
 
 subprojects {
-    apply plugin: 'java'
-
+    apply plugin: 'groovy'
+    apply plugin: 'sonar'
 
     repositories {
+        mavenRepo urls: "http://m2repo.spockframework.org/snapshots"
+        mavenRepo urls: "http://repository.codehaus.org/"
         mavenCentral()
     }
 
     dependencies {
-        testCompile 'junit:junit:4.7'
+        groovy "org.codehaus.groovy:groovy-all:1.8.0"
+        testCompile 'junit:junit:4.8.1'
+        testCompile('org.spockframework:spock-core:0.6-groovy-1.8-SNAPSHOT') {
+            exclude module: 'groovy-all'
+        }
     }
     sourceCompatibility = 1.6
     targetCompatability = 1.6
 
+    //compileTestGroovy.groovyOptions.fork = false
+
     test {
-        maxParallelForks = 2
+        maxParallelForks = 1
         testReport = true
 
         afterTest { descriptor, result ->
@@ -40,12 +48,17 @@ subprojects {
         }
     }
 
-    task myInfo {
-        doLast {
-            println "Im project $project.name $project.version"
-        }
-    }
+    sonar { serverUrl = "http://localhost:9000" }
+}
+
+clean.dependsOn subprojects*.clean
+
+task build {
+	dependsOn subprojects*.build
 }
 
 
 
+task jalla(type: JavaExec) {
+    main = ""
+}

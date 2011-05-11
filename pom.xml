@@ -17,10 +17,26 @@
         <dependency>
             <artifactId>junit</artifactId>
             <groupId>junit</groupId>
-            <version>4.7</version>
+            <version>4.8.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.spockframework</groupId>
+            <artifactId>spock-core</artifactId>
+            <version>0.6-groovy-1.7-SNAPSHOT</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <repositories>
+        <repository>
+            <id>Spock snapshots</id>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <url>http://m2repo.spockframework.org/snapshots</url>
+        </repository>
+    </repositories>
 
 
     <build>
@@ -34,7 +50,56 @@
                     <optimize>true</optimize>
                 </configuration>
             </plugin>
+
+
+            <plugin>
+                <groupId>org.codehaus.gmaven</groupId>
+                <artifactId>gmaven-plugin</artifactId>
+                <version>1.3</version>
+                <configuration>
+                    <providerSelection>1.7</providerSelection>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>testCompile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.codehaus.gmaven.runtime</groupId>
+                        <artifactId>gmaven-runtime-1.7</artifactId>
+                        <version>1.3</version>
+                        <exclusions>
+                            <exclusion>
+                                <groupId>org.codehaus.groovy</groupId>
+                                <artifactId>groovy-all</artifactId>
+                            </exclusion>
+                        </exclusions>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.codehaus.groovy</groupId>
+                        <artifactId>groovy-all</artifactId>
+                        <version>1.7.10</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <!--plugin>
+                <groupId>org.spockframework</groupId>
+                <artifactId>spock-maven</artifactId>
+                <version>0.6-groovy-1.7-SNAPSHOT</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>find-specs</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin -->
+
         </plugins>
     </build>
+
 
 </project>

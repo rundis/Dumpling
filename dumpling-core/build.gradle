@@ -10,7 +10,7 @@ configurations {
 
 
 dependencies {
-    compile project(':dumpling-util')
+    compile project(':dumpling-util'), 'commons-collections:commons-collections:2.0'
     // integrationTestCompile ... any dependencies needed for integration tests..
 }
 

@@ -8,4 +8,5 @@
 .settings
 bin
 build
-target
+out
+target/out
