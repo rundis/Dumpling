@@ -60,5 +60,5 @@ task build {
 
 
 task jalla(type: JavaExec) {
-    main = ""
+    main = "" // this doesnt do much good
 }

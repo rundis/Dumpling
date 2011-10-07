@@ -20,4 +20,9 @@ public class StringUtilTest {
         assertTrue(result.contains(arg1));
         assertTrue(result.contains(arg2));
     }
+
+    @Test
+    public void silly() {
+        assertTrue(true);
+    }
 }
