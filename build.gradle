@@ -59,6 +59,3 @@ task build {
 
 
 
-task jalla(type: JavaExec) {
-    main = "" // this doesnt do much good
-}

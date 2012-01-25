@@ -1,6 +1,52 @@
 apply plugin: 'war'
 apply plugin: 'jetty'
 
+
+configurations {
+    integrationTestCompile {
+        extendsFrom testCompile
+    }
+    integrationTestRuntime {
+        extendsFrom integrationTestCompile, testRuntime
+    }
+}
+
 dependencies {
     compile 'org.apache.tapestry:tapestry-core:5.2.4', project(':dumpling-core')
+    // integrationTestCompile ... any dependencies needed for integration tests..
+}
+
+
+sourceSets {
+    integrationTest {
+        java.srcDir file('src/integration-test/java')
+        resources.srcDir file('src/integration-test/resources')
+        compileClasspath = sourceSets.main.classes + sourceSets.test.classes + configurations.integrationTestCompile
+        runtimeClasspath = classes + compileClasspath + configurations.integrationTestRuntime
+    }
+}
+
+// Jetty properties
+httpPort = 8089
+stopKey = 'foo'
+stopPort = 9451
+
+
+task integrationTest(type: Test, dependsOn: jettyRun) {
+    testClassesDir = sourceSets.integrationTest.classesDir
+    classpath = sourceSets.integrationTest.runtimeClasspath
+    systemProperties['jar.path'] = jar.archivePath
+}
+
+
+def doIntegrationTest = hasProperty('intTest') ? intTest : false
+if (doIntegrationTest) {
+    jettyStop.dependsOn integrationTest
+    build.dependsOn jettyStop
+
+    gradle.taskGraph.whenReady {graph ->
+        if (graph.hasTask(integrationTest)) {
+            [jettyRun, jettyRunWar]*.daemon = true
+        }
+    }
 }
