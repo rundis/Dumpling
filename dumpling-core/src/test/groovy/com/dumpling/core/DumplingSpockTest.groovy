@@ -11,7 +11,7 @@ import com.dumling.util.StringUtil
 class DumplingSpockTest extends Specification {
 
 
-    def "Handling nasty static collaborator call"() {
+    /*def "Handling nasty static collaborator call"() {
         StringUtil.metaClass.static.concatDumplingStyle = {String arg1, String arg2 ->
             println "WHAT"
             def result = 'MOCK'
@@ -26,6 +26,6 @@ class DumplingSpockTest extends Specification {
 
         where:
         dumpling = new Dumpling("Jalla", "Dalla")
-    }
+    } */
 
 }

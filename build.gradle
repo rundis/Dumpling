@@ -4,23 +4,21 @@ apply plugin: 'base'
 allprojects {
     apply plugin: 'idea'
     apply plugin: 'eclipse'
-    version = "1.0"
+    version = "1.0-SNAPSHOT"
 }
 
-ideaProject {
-    javaVersion = 1.6
-    withXml { provider ->
-        provider.node.component.find { it.@name == 'VcsDirectoryMappings' }.mapping.@vcs = 'git'
-    }
+idea.project.jdkName = "1.6"
+idea.project.ipr.withXml { provider ->
+    provider.node.component.find { it.@name == 'VcsDirectoryMappings' }.mapping.@vcs = 'git'
 }
+
 
 subprojects {
     apply plugin: 'groovy'
-    apply plugin: 'sonar'
 
     repositories {
-        mavenRepo urls: "http://m2repo.spockframework.org/snapshots"
-        mavenRepo urls: "http://repository.codehaus.org/"
+        mavenRepo url: "http://m2repo.spockframework.org/snapshots"
+        mavenRepo url: "http://repository.codehaus.org/"
         mavenCentral()
     }
 
@@ -34,8 +32,6 @@ subprojects {
     sourceCompatibility = 1.6
     targetCompatability = 1.6
 
-    //compileTestGroovy.groovyOptions.fork = false
-
     test {
         maxParallelForks = 1
         testReport = true
@@ -48,7 +44,6 @@ subprojects {
         }
     }
 
-    sonar { serverUrl = "http://localhost:9000" }
 }
 
 clean.dependsOn subprojects*.clean

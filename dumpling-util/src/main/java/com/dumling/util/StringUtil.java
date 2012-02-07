@@ -5,7 +5,7 @@ package com.dumling.util;
  */
 public class StringUtil {
 
-    public static String concatDumplingStyle(String arg1, String arg2) {
+    public static String concatDumplingStyles(String arg1, String arg2) {
         return "|" + arg1 + "|" + arg2 + "||";
     }
 }

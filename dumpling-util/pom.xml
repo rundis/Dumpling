@@ -3,13 +3,13 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.dumpling</groupId>
     <artifactId>dumpling-util</artifactId>
-    <version>1.0</version>
+    <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>Dumplingapp Util</name>
     <parent>
         <artifactId>dumpling</artifactId>
         <groupId>com.dumpling</groupId>
-        <version>1.0</version>
+        <version>1.0-SNAPSHOT</version>
     </parent>
 
 </project>
