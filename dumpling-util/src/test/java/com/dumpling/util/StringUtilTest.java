@@ -16,7 +16,7 @@ public class StringUtilTest {
         String arg1 = "Hello";
         String arg2 = "World";
 
-        String result = StringUtil.concatDumplingStyles(arg1, arg2);
+        String result = StringUtil.concatDumplingStyle(arg1, arg2);
         assertTrue(result.contains(arg1));
         assertTrue(result.contains(arg2));
     }
