@@ -23,18 +23,18 @@
         <dependency>
             <groupId>org.spockframework</groupId>
             <artifactId>spock-core</artifactId>
-            <version>0.6-groovy-1.7-SNAPSHOT</version>
+            <version>0.6-groovy-1.7</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
 
     <repositories>
         <repository>
-            <id>Spock snapshots</id>
+            <id>JCenter</id>
             <snapshots>
-                <enabled>true</enabled>
+                <enabled>false</enabled>
             </snapshots>
-            <url>http://m2repo.spockframework.org/snapshots</url>
+            <url>https://jcenter.bintray.com</url>
         </repository>
     </repositories>
 
